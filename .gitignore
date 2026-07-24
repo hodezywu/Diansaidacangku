@@ -1,0 +1,24 @@
+# CCS build outputs
+Debug/
+Release/
+*.o
+*.obj
+*.d
+*.out
+*.map
+*.hex
+*.bin
+*.elf
+*.log
+
+# Local tool and editor state
+.codex/
+.vscode/
+.history/
+*.tmp
+*.bak
+*~
+
+# Python cache
+__pycache__/
+*.py[cod]
