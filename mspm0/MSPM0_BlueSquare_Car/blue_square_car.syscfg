@@ -1,0 +1,33 @@
+/** MSPM0G3507 blue-square car pin configuration. */
+//@cliArgs --device "MSPM0G350X" --package "LQFP-64(PM)" --part "Default"
+//@v2CliArgs --device "MSPM0G3507" --package "LQFP-64(PM)"
+// @cliArgs --board /ti/boards/LP_MSPM0G3507 --rtos nortos
+
+const GPIO   = scripting.addModule("/ti/driverlib/GPIO", {}, false);
+const SYSCTL = scripting.addModule("/ti/driverlib/SYSCTL");
+
+const GPIOA_MOTOR = GPIO.addInstance();
+GPIOA_MOTOR.$name = "GPIO_MOTOR_PWM";
+GPIOA_MOTOR.port  = "PORTA";
+GPIOA_MOTOR.associatedPins.create(2);
+GPIOA_MOTOR.associatedPins[0].$name       = "PWMC";
+GPIOA_MOTOR.associatedPins[0].pin.$assign = "PA21";
+GPIOA_MOTOR.associatedPins[1].$name       = "PWMB";
+GPIOA_MOTOR.associatedPins[1].pin.$assign = "PA22";
+
+const GPIOB_MOTOR = GPIO.addInstance();
+GPIOB_MOTOR.$name = "GPIO_MOTOR_DIRECTION";
+GPIOB_MOTOR.port  = "PORTB";
+GPIOB_MOTOR.associatedPins.create(4);
+GPIOB_MOTOR.associatedPins[0].$name       = "CIN1";
+GPIOB_MOTOR.associatedPins[0].pin.$assign = "PB6";
+GPIOB_MOTOR.associatedPins[1].$name       = "CIN2";
+GPIOB_MOTOR.associatedPins[1].pin.$assign = "PB7";
+GPIOB_MOTOR.associatedPins[2].$name       = "BIN1";
+GPIOB_MOTOR.associatedPins[2].pin.$assign = "PB8";
+GPIOB_MOTOR.associatedPins[3].$name       = "BIN2";
+GPIOB_MOTOR.associatedPins[3].pin.$assign = "PB9";
+
+const Board = scripting.addModule("/ti/driverlib/Board", {}, false);
+SYSCTL.forceDefaultClkConfig = true;
+SYSCTL.clockTreeEn = true;
